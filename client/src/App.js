@@ -7,8 +7,8 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHTTPLink,
-} from "@apollo/client/link/context";
+  createHttpLink,
+} from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
 // Construct our main GraphQL API endpoint

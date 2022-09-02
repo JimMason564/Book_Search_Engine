@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import Auth from '../utils/auth';
 import { useMutation} from '@apollo/client';
 import {ADD_USER} from '../utils/mutations';
 
@@ -41,8 +41,8 @@ const handleInputChange = (event) => {
       const response = await addUser({
         variables: {userFormData}
       });
-      console.log(data)
-      Auth.login(data.addUsertoken);
+      console.log()
+      Auth.login(addUser);
     } catch (err) {
       console.error(err);
     }
