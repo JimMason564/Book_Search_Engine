@@ -23,7 +23,7 @@ useEffect(()=> {
 }, [error])
 
 const handleInputChange = (event) => {
-  const { name, value } = event.currentTarget
+  const { name, value } = event.target
   setUserFormData({ ...userFormData, [name]:value})
 }
 
@@ -38,11 +38,11 @@ const handleInputChange = (event) => {
     }
 
     try {
-      const response = await addUser({
-        variables: {userFormData}
+      const { data } = await addUser({
+        variables: {...userFormData}
       });
       console.log()
-      Auth.login(addUser);
+      Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
     }

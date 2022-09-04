@@ -1,5 +1,7 @@
 ## SQL Employee Tracker
 
+![image](Insert screen shot)
+
 ## Description
 This is a book search engine, using React on the front-end and GraphQL, Apollo, and MongoDB on the backend. Users should be able to set up an account, sign in, search for books, and save books to their account. 
 
@@ -23,4 +25,4 @@ https://github.com/JimMason564/Book_Search_Engine
 
 
 ## Screenshot
-![image](Insert screen shot)
+![image](./Assets/graphql.jpeg)

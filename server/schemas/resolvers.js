@@ -7,7 +7,7 @@ const resolvers = {
     me: async (parent, args, context) => {
         console.log(context.user)
       if (context.user) {
-        const user= await findOne({ _id: context.user._id }).populate("books")
+        const user= await findOne({ _id: context.user._id }).select("-__v -password")
         console.log(user)
         return user
       }
@@ -18,6 +18,7 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
+      console.log(user)
       const token = signToken(user);
       return { token, user };
     },
@@ -42,9 +43,9 @@ const resolvers = {
     
     saveBook: async (parent, { bookData }, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate({
-          _id: context.user._id,
-          $push: {savedBooks:bookData}},
+        const updatedUser = await User.findByIdAndUpdate(
+          {_id: context.user._id},
+          {$push: {savedBooks:bookData}},
           {new: true}
         );
 
@@ -55,14 +56,10 @@ const resolvers = {
 
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedBooks: bookId } }
+        const updatedUser = await User.findOneAndUpdate(
+          {_id: context.user._id},
+          {$pull: {savedBooks:{bookId}}},
+          {new:true}
         );
 
         return updatedUser;
