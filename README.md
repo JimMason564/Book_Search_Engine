@@ -1,4 +1,4 @@
-## SQL Employee Tracker
+## GraphQL Book Search Engine
 
 ![image](./Assets/graphql.jpeg)
 
