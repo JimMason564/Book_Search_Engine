@@ -7,9 +7,9 @@ const resolvers = {
     me: async (parent, args, context) => {
         console.log(context.user)
       if (context.user) {
-        const user= await findOne({ _id: context.user._id }).select("-__v -password")
-        console.log(user)
-        return user
+        const userData= await User.findOne({ _id: context.user._id }).select("-__v -password")
+        console.log(userData)
+        return userData
       }
       throw new AuthenticationError("You need to be logged in!");
     },
